@@ -1,4 +1,4 @@
-# vwt-20171107
+# vwt-hot-reload
 
 > A Vue.js project
 

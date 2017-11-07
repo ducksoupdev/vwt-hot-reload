@@ -2,6 +2,7 @@ const helpers = require('./helpers'),
   webpackConfig = require('./webpack.config.base'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   DefinePlugin = require('webpack/lib/DefinePlugin'),
+  NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin'),
   env = require('../environment/dev.env');
 
 webpackConfig.module.rules = [...webpackConfig.module.rules,
@@ -25,6 +26,7 @@ webpackConfig.module.rules = [...webpackConfig.module.rules,
 ];
 
 webpackConfig.plugins = [...webpackConfig.plugins,
+  new NamedModulesPlugin(),
   new HtmlWebpackPlugin({
     inject: true,
     template: helpers.root('/src/index.html'),
