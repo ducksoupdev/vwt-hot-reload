@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home';
 import { AboutComponent } from './components/about';
 import { ListComponent } from './components/list';
 
-if (isHot) {
+if (isHot()) {
   const homeModuleId = './components/home';
   const aboutModuleId = './components/about';
   const listModuleId = './components/list';

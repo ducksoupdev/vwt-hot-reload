@@ -6,7 +6,7 @@ import { createRouter } from './router';
 
 import './sass/main.scss';
 
-if (isHot) {
+if (isHot()) {
   const navbarModuleId = './components/navbar';
 
   // first arguments for `module.hot.accept` and `require` methods have to be static strings
