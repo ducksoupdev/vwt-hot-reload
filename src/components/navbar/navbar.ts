@@ -22,7 +22,7 @@ export class NavbarComponent extends Vue {
 
   links: Link[] = [
     new Link('Home', '/'),
-    new Link('About 17', '/about'),
+    new Link('About', '/about'),
     new Link('List', '/list')
   ];
 

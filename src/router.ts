@@ -2,9 +2,9 @@ import Vue from 'vue';
 import VueRouter, { Location, Route, RouteConfig } from 'vue-router';
 import { isHot, makeHot, reload } from './hot-reload';
 
-import { HomeComponent } from './components/home';
-import { AboutComponent } from './components/about';
-import { ListComponent } from './components/list';
+const homeComponent = () => import('./components/home').then(({ HomeComponent }) => HomeComponent);
+const aboutComponent = () => import('./components/about').then(({ AboutComponent }) => AboutComponent);
+const listComponent = () => import('./components/list').then(({ ListComponent }) => ListComponent);
 
 if (isHot()) {
   const homeModuleId = './components/home';
@@ -13,13 +13,13 @@ if (isHot()) {
 
   // first arguments for `module.hot.accept` and `require` methods have to be static strings
   // see https://github.com/webpack/webpack/issues/5668
-  makeHot(homeModuleId, HomeComponent,
+  makeHot(homeModuleId, homeComponent,
     module.hot.accept('./components/home', () => reload(homeModuleId, (<any>require('./components/home')).HomeComponent)));
 
-  makeHot(aboutModuleId, AboutComponent,
+  makeHot(aboutModuleId, aboutComponent,
     module.hot.accept('./components/about', () => reload(aboutModuleId, (<any>require('./components/about')).AboutComponent)));
 
-  makeHot(listModuleId, ListComponent,
+  makeHot(listModuleId, listComponent,
     module.hot.accept('./components/list', () => reload(listModuleId, (<any>require('./components/list')).ListComponent)));
 }
 
@@ -28,15 +28,15 @@ Vue.use(VueRouter);
 export const createRoutes: () => RouteConfig[] = () => [
   {
     path: '/',
-    component: HomeComponent,
+    component: homeComponent,
   },
   {
     path: '/about',
-    component: AboutComponent,
+    component: aboutComponent,
   },
   {
     path: '/list',
-    component: ListComponent,
+    component: listComponent,
   }
 ];
 

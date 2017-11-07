@@ -3,15 +3,19 @@ import * as api from 'vue-hot-reload-api';
 
 export const isHot = () => process.env.ENV === 'development' && module.hot;
 
-export function makeHot(id: string, component: Component, acceptFunc: void) {
+export async function makeHot(id: string, componentLoader: () => Promise<Component>, acceptFunc: void) {
   if (isHot()) {
     api.install(Vue);
     if (!api.compatible) {
       throw new Error('vue-hot-reload-api is not compatible with the version of Vue you are using.');
     }
 
-    api.createRecord(id, component);
+    const loadedComponent = await componentLoader();
+    api.createRecord(id, loadedComponent);
   }
 }
 
-export const reload = api.reload;
+// export const reload = api.reload;
+export function reload(id: string, component: Component) {
+  api.reload(id, component);
+}
