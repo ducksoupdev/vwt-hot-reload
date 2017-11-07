@@ -7,8 +7,12 @@ import { createRouter } from './router';
 import './sass/main.scss';
 
 if (isHot) {
-  makeHot('./components/navbar', NavbarComponent,
-    module.hot.accept('./components/navbar', () => reload('./components/navbar', (<any>require('./components/navbar')).NavbarComponent)));
+  const navbarModuleId = './components/navbar';
+
+  // first arguments for `module.hot.accept` and `require` methods have to be static strings
+  // see https://github.com/webpack/webpack/issues/5668
+  makeHot(navbarModuleId, NavbarComponent,
+    module.hot.accept('./components/navbar', () => reload(navbarModuleId, (<any>require('./components/navbar')).NavbarComponent)));
 }
 
 new Vue({

@@ -13,10 +13,7 @@ export function makeHot(id: string, component: Component, acceptFunc: void) {
     }
 
     api.createRecord(id, component);
-    return true;
   }
-
-  return false;
 }
 
 export const reload = api.reload;
