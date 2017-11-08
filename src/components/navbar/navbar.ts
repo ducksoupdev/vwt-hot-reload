@@ -18,7 +18,7 @@ export class NavbarComponent extends Vue {
 
   showNavbar = false;
 
-  object: { default: string } = { default: 'Default object property 2!' }; // objects as default values don't need to be wrapped into functions
+  object: { default: string } = { default: 'Default object property!' }; // objects as default values don't need to be wrapped into functions
 
   links: Link[] = [
     new Link('Home', '/'),

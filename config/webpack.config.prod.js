@@ -92,12 +92,15 @@ webpackConfig.plugins = [...webpackConfig.plugins,
     }
   }),
   new UglifyJsPlugin({
-    include: /\.min\.js$/,
-    minimize: true
+    include: /\.js$/,
+    uglifyOptions: {
+      compress: true,
+      debug: true
+    }
   }),
   new CompressionPlugin({
     asset: '[path].gz[query]',
-    test: /\.min\.js$/
+    test: /\.js$/
   }),
   new DefinePlugin({
     'process.env': env
