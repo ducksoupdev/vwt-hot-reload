@@ -4,10 +4,11 @@ import { isHot, makeHot, reload } from './hot-reload';
 import { createRouter } from './router';
 
 const navbarComponent = () => import('./components/navbar').then(({ NavbarComponent }) => NavbarComponent);
+// const navbarComponent = () => import(/* webpackChunkName: 'navbar' */'./components/navbar').then(({ NavbarComponent }) => NavbarComponent);
 
 import './sass/main.scss';
 
-if (isHot()) {
+if (process.env.ENV === 'development' && isHot()) {
   const navbarModuleId = './components/navbar';
 
   // first arguments for `module.hot.accept` and `require` methods have to be static strings

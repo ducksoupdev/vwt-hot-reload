@@ -1,7 +1,7 @@
 import Vue, { Component } from 'vue';
 import * as api from 'vue-hot-reload-api';
 
-export const isHot = () => process.env.ENV === 'development' && module.hot;
+export const isHot = () => module.hot;
 
 export async function makeHot(id: string, componentLoader: () => Promise<Component>, acceptFunc: void) {
   if (isHot()) {

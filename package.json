@@ -20,7 +20,7 @@
     "coverage:run": "cross-env NODE_ENV=development karma start karma.coverage.js",
     "dev": "webpack-dev-server --hot --inline",
     "lint": "tslint src/**/*.ts",
-    "serve": "http-server dist/ -o",
+    "serve": "http-server dist/ -g -o",
     "test": "cross-env NODE_ENV=development karma start karma.unit.js",
     "test:debug": "cross-env NODE_ENV=development karma start karma.debug.js",
     "test:watch": "cross-env NODE_ENV=development karma start karma.unit.js --singleRun=false --auto-watch"

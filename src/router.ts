@@ -5,8 +5,11 @@ import { isHot, makeHot, reload } from './hot-reload';
 const homeComponent = () => import('./components/home').then(({ HomeComponent }) => HomeComponent);
 const aboutComponent = () => import('./components/about').then(({ AboutComponent }) => AboutComponent);
 const listComponent = () => import('./components/list').then(({ ListComponent }) => ListComponent);
+// const homeComponent = () => import(/* webpackChunkName: 'home' */'./components/home').then(({ HomeComponent }) => HomeComponent);
+// const aboutComponent = () => import(/* webpackChunkName: 'about' */'./components/about').then(({ AboutComponent }) => AboutComponent);
+// const listComponent = () => import(/* webpackChunkName: 'list' */'./components/list').then(({ ListComponent }) => ListComponent);
 
-if (isHot()) {
+if (process.env.ENV === 'development' && isHot()) {
   const homeModuleId = './components/home';
   const aboutModuleId = './components/about';
   const listModuleId = './components/list';
